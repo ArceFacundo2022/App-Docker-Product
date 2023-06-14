@@ -1,0 +1,42 @@
+version: '3'
+
+services: 
+  backend:
+    build:
+      context: ./back-docker-product
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+    networks:
+      - reddocker
+  
+  frontend:
+    build:
+      context: ./front-docker-product
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - backend
+    networks:
+      - reddocker
+
+  database:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysecretpassword
+      - MYSQL_USER=root
+      - MYSQL_DATABASE:dockerProduct
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+    networks:
+      - reddocker
+
+networks:
+  reddocker:
+    external:
+      name: reddocker
