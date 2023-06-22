@@ -1,7 +1,7 @@
 const { createPool } = require("mysql2/promise");
 
 const pool = createPool({
-    host: "localhost",
+    host: "database",
     user: "root",
     password: "mysecretpassword",
     port: 3306,
@@ -49,14 +49,14 @@ const postProduct = async (req, res) => {
 
 
 
-  //CREATE DATABASE IF NOT EXISTS dockerdb;
+  //CREATE DATABASE IF NOT EXISTS dockerProduct;
   
-  //USE dockerdb;
+  //USE dockerProduct;
   
   /*CREATE TABLE product (
       id INT(11) NOT NULL AUTO_INCREMENT,
       name VARCHAR(45) DEFAULT NULL,
-      description VARCHAR(100) DEFAULT NULL,
+      category VARCHAR(100) DEFAULT NULL,
       price INT(10) DEFAULT NULL,
       PRIMARY KEY (id)
   );*/
